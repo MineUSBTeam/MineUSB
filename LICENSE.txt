@@ -1,0 +1,25 @@
+                     67LICENSE
+               Version 1, JULY 2015
+
+  Copyright (C) 2015 Clément - “67clement”
+
+Everyone is permitted to use, copy and distribute copies of
+this license document, and changing it is allowed as long
+as the name is changed.
+
+The original version is available here :
+https://67clement.github.io/67license.txt
+
+The official french version is available here :
+https://67clement.github.io/67license.fr.txt
+
+TERMS AND CONDITIONS
+
+0. YOU ARE ALLOWED TO view the source code of this software.
+1. YOU ARE ALLOWED TO edit the source code WITHOUT giving credits as
+   personal use ONLY.
+2. YOU ARE ALLOWED TO to distribute a modified code from this software
+   BUT you MUST explicitly give credits in the code (as comment(s))
+   and on the software page (if exists). The source code must be accessible.
+3. IF YOU ARE ONE OF THE DEVS OF THIS SOFTWARE, the code that YOU'VE WRITEN is YOURS,
+   you CAN REFUSE the PUBLICATION of that code, and the software IF the code is included.
