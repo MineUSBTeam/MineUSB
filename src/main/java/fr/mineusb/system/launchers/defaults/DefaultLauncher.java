@@ -7,6 +7,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.PasswordAuthentication;
+import java.net.Proxy;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -95,14 +97,16 @@ public class DefaultLauncher extends Launcher {
 							.getFile().toURI().toURL() })
 							.loadClass("net.minecraft.bootstrap.Bootstrap");
 					Constructor<?> constructor = mcBootstrap
-							.getConstructor(new Class<?>[] {});
-					Method mainMethod = mcBootstrap.getMethod("main",
-							new Class<?>[] { String[].class });
+							.getConstructor(new Class<?>[] { File.class,
+									Proxy.class, PasswordAuthentication.class,
+									String[].class });
+					Proxy proxy = Proxy.NO_PROXY;
+					Method mainMethod = mcBootstrap.getMethod("execute",
+							new Class<?>[] { Boolean.class });
 					dialog.dispose();
 					MineUSB.shutdown();
-					mainMethod
-							.invoke(constructor.newInstance(new Object[] {}),
-									new Object[] { new String[] { "--workdir data/" } });
+					mainMethod.invoke(constructor.newInstance(workingDirectory,
+							proxy, null, new String[] {}), false);
 				} catch (ClassNotFoundException e) {
 					runSuccess = false;
 				} catch (MalformedURLException e) {
@@ -132,14 +136,16 @@ public class DefaultLauncher extends Launcher {
 							.getFile().toURI().toURL() })
 							.loadClass("net.minecraft.bootstrap.Bootstrap");
 					Constructor<?> constructor = mcBootstrap
-							.getConstructor(new Class<?>[] {});
-					Method mainMethod = mcBootstrap.getMethod("main",
-							new Class<?>[] { String[].class });
+							.getConstructor(new Class<?>[] { File.class,
+									Proxy.class, PasswordAuthentication.class,
+									String[].class });
+					Proxy proxy = Proxy.NO_PROXY;
+					Method mainMethod = mcBootstrap.getMethod("execute",
+							new Class<?>[] { Boolean.class });
 					dialog.dispose();
 					MineUSB.shutdown();
-					mainMethod
-							.invoke(constructor.newInstance(new Object[] {}),
-									new Object[] { new String[] { "--workdir data/" } });
+					mainMethod.invoke(constructor.newInstance(workingDirectory,
+							proxy, null, new String[] {}), false);
 				} catch (ClassNotFoundException e) {
 					runSuccess = false;
 				} catch (MalformedURLException e) {
@@ -169,14 +175,16 @@ public class DefaultLauncher extends Launcher {
 							.getFile().toURI().toURL() })
 							.loadClass("net.minecraft.bootstrap.Bootstrap");
 					Constructor<?> constructor = mcBootstrap
-							.getConstructor(new Class<?>[] {});
-					Method mainMethod = mcBootstrap.getMethod("main",
-							new Class<?>[] { String[].class });
+							.getConstructor(new Class<?>[] { File.class,
+									Proxy.class, PasswordAuthentication.class,
+									String[].class });
+					Proxy proxy = Proxy.NO_PROXY;
+					Method mainMethod = mcBootstrap.getMethod("execute",
+							new Class<?>[] { Boolean.class });
 					dialog.dispose();
 					MineUSB.shutdown();
-					mainMethod
-							.invoke(constructor.newInstance(new Object[] {}),
-									new Object[] { new String[] { "--workdir data/" } });
+					mainMethod.invoke(constructor.newInstance(workingDirectory,
+							proxy, null, new String[] {}), false);
 				} catch (ClassNotFoundException e) {
 					runSuccess = false;
 				} catch (MalformedURLException e) {

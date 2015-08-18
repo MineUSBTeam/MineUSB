@@ -50,6 +50,8 @@ public class MineUSB {
 		console.info("Starting MineUSB " + version);
 		os = OS.getCurrentPlatform();
 		console.info("OS used: " + MineSystem.getCurrentOS());
+		
+		System.setProperty("java.net.preferIPv4Stack", "true");
 
 		console.printInfo("Initializing of look and feel... ");
 		// Initialize look and feel

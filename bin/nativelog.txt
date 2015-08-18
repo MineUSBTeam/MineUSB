@@ -1,0 +1,21 @@
+########################################################
+Native Launcher Version: 63
+Operating System: Windows 8.1
+Application Hash: 040e43e8a8b004992c0e5d3b9c7ff24efdb5486b
+Java Version: 
+x64: 1
+Starting download of: https://launchermeta.mojang.com/mc/launcher.json
+Created pFile
+Content length is 00759918
+Got 200 from server
+Download successful
+Runtime outdated!
+Runtime version should be should be 1.8.0_25
+Game launcher outdated!
+Hash should be c3faf74aa9ca3b7f7beed0c16b7198747e6b7aaf
+Starting download of: http://launcher.mojang.com/jre/win-64/1.8.0_25/bdca00e1c2a1f2c23c9a77b65188b788d475a603/jre-win-64-1.8.0_25.lzma
+Created pFile
+Content length is 007BB308
+Got 200 from server
+Download aborted
+Deleted game/_tmpJava.lzma

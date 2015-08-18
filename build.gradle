@@ -35,3 +35,9 @@ dependencies {
     compile 'fr.w67clement.core:ClemCore:1.0.0'
 }
 
+jar {
+    manifest {
+        attribute "Main-Class": "fr.mineusb.MineUSB"
+    }
+}
+

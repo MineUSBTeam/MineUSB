@@ -105,8 +105,8 @@ public class FileUtils {
 			console.info("=======================[" + file.getName() + "]========================");
 			output.println("#!/bin/bash ");
 			console.info("#!/bin/bash ");
-			output.println("export MINECRAFTDATA=\"'readlink -f ./data'\"");
-			console.info("export MINECRAFTDATA=\"'readlink -f ./data'\"");
+			output.println("export MINECRAFTDATA=\"./data\"");
+			console.info("export MINECRAFTDATA=\"./data\"");
 			output.println("java -Duser.home=$MINECRAFTDATA -jar ./bin/" + runFile.getName());
 			console.info("java -Duser.home=$MINECRAFTDATA -jar ./bin/" + runFile.getName());
 			console.info("=======================[" + file.getName() + "]========================");
