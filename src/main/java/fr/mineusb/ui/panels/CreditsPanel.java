@@ -21,6 +21,7 @@ public class CreditsPanel extends TexturedPanel {
 	private static JLabel specialThanks;
 	private static JLabel theshark34;
 	private static JLabel supporters;
+	private static JLabel xolider;
 
 	public CreditsPanel() {
 		super(MineUSBConstants.DIRT_PATH);
@@ -28,6 +29,7 @@ public class CreditsPanel extends TexturedPanel {
 		this.add(getCreditsLabel());
 		this.add(getW67clementLabel());
 		this.add(getMentor6561Label());
+		this.add(getXoliderLabel());
 		this.add(getSpecialThanksLabel());
 		this.add(getTheShark34Label());
 		this.add(getSupportersLabel());
@@ -56,6 +58,16 @@ public class CreditsPanel extends TexturedPanel {
 			w67clement.setBounds(90, 50, 450, 20);
 		}
 		return w67clement;
+	}
+	
+	public static JLabel getXoliderLabel() {
+		if(xolider == null) {
+			xolider = new JLabel();
+			xolider.setText("<html>- <b><font color=\"#00CC00\">Xolider</font></b>: Developper Java. </html>");
+			xolider.setForeground(Color.WHITE);
+			xolider.setBounds(90, 90, 450, 20);
+		}
+		return xolider;
 	}
 
 	public static JLabel getMentor6561Label() {

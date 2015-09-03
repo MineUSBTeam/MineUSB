@@ -89,4 +89,9 @@ public class EN_Lang implements Lang {
 	public String getSupportersText() {
 		return "And all supporters of MineUSB";
 	}
+
+	@Override
+	public String getSelectedLauncherLabel() {
+		return "Selected Launcher: ";
+	}
 }

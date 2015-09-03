@@ -41,6 +41,7 @@ public class MineUSBPanel extends JPanel {
 	// Label
 	private static JLabel logo;
 	private static JLabel description;
+	private static JLabel selectedLauncher;
 	private static JLabel authors;
 	// Buttons
 	private static JButton playButton;
@@ -63,6 +64,9 @@ public class MineUSBPanel extends JPanel {
 
 		// Add buttons
 		this.add(buttonsPanel);
+		
+		// Add selected launcher name
+		this.add(getSelectedLauncher());
 
 		// Add authors label
 		this.add(getAuthorsLabel());
@@ -89,6 +93,11 @@ public class MineUSBPanel extends JPanel {
 		}
 		return logo;
 	}
+	
+	public static void update() {
+		String selected = LaunchersPanel.getLauncherList().getSelectedItem().toString();
+		selectedLauncher.setText(MineUSB.getLangUsed().getSelectedLauncherLabel() + selected);
+	}
 
 	public static JLabel getDescriptionLabel() {
 		if (description == null) {
@@ -100,6 +109,19 @@ public class MineUSBPanel extends JPanel {
 			description.setText(MineUSB.getLangUsed().getDescriptionLabel());
 		}
 		return description;
+	}
+	
+	public static JLabel getSelectedLauncher() {
+		String selected = LaunchersPanel.getLauncherList().getSelectedItem().toString();
+		if(selectedLauncher == null) {
+			selectedLauncher = new JLabel();
+			selectedLauncher.setForeground(Color.WHITE);
+			selectedLauncher.setBounds(15, 66, 365, 44);
+			selectedLauncher.setPreferredSize(new Dimension(300, 50));
+			selectedLauncher.setHorizontalAlignment(0);
+			selectedLauncher.setText(MineUSB.getLangUsed().getSelectedLauncherLabel() + selected);
+		}
+		return selectedLauncher;
 	}
 
 	public static JLabel getAuthorsLabel() {

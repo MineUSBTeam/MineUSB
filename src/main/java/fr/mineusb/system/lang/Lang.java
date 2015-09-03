@@ -12,6 +12,8 @@ public interface Lang {
 	
 	public String getDescriptionLabel();
 	
+	public String getSelectedLauncherLabel();
+	
 	public String getPlayButton();
 	
 	public String getOptionsButton();

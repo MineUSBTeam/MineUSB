@@ -205,6 +205,8 @@ public class MineUSB {
 	}
 
 	public static void applyLang(final Lang lang) {
+		// Selected Launcher
+		MineUSBPanel.update();
 		// Description
 		MineUSBPanel.getDescriptionLabel().setText(lang.getDescriptionLabel());
 		// Play Button

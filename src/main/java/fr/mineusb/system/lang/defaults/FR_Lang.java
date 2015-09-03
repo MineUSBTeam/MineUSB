@@ -89,4 +89,9 @@ public class FR_Lang implements Lang {
 	public String getSupportersText() {
 		return "Et tous les supporteurs de MineUSB";
 	}
+
+	@Override
+	public String getSelectedLauncherLabel() {
+		return "Launcher séléctionné: ";
+	}
 }
