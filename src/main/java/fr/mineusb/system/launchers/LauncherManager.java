@@ -7,6 +7,7 @@ import java.util.List;
 import fr.mineusb.MineUSB;
 import fr.mineusb.exceptions.LauncherNotFoundException;
 import fr.mineusb.system.launchers.defaults.DefaultLauncher;
+import fr.mineusb.system.launchers.defaults.MagicLauncher;
 import fr.mineusb.system.launchers.defaults.NationsGloryLauncher;
 import fr.mineusb.system.launchers.defaults.Skyolauncher;
 
@@ -25,9 +26,11 @@ public class LauncherManager {
 		DefaultLauncher launcher = new DefaultLauncher();
 		NationsGloryLauncher nationsGlory = new NationsGloryLauncher();
 		Skyolauncher skyoLauncher = new Skyolauncher();
+		MagicLauncher mgLauncher = new MagicLauncher();
 		launchers.put(launcher.getName(), launcher);
 		launchers.put(nationsGlory.getName(), nationsGlory);
 		launchers.put(skyoLauncher.getName(), skyoLauncher);
+		launchers.put(mgLauncher.getName(), mgLauncher);
 	}
 
 	public static void registerLauncher(Launcher launcher) {
