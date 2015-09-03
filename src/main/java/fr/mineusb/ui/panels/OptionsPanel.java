@@ -56,7 +56,7 @@ public class OptionsPanel extends JPanel {
 
 		TexturedPanel websites = new TexturedPanel(MineUSBConstants.STONE_PATH);
 
-		websites.setPreferredSize(new Dimension(150, 125));
+		websites.setPreferredSize(new Dimension(175, 125));
 
 		websites.add(getWebsitesOnlineLabel());
 		websites.add(getMinecraftWebSiteOnlineLabel());
@@ -104,8 +104,10 @@ public class OptionsPanel extends JPanel {
 			viewLicenseButton = new JButton();
 			viewLicenseButton.setText(MineUSB.getLangUsed()
 					.getViewLicenseButton());
-			viewLicenseButton.setBorderPainted(false);
-			viewLicenseButton.setOpaque(false);
+			if (!MineUSB.hasJavaDesign()) {
+				viewLicenseButton.setBorderPainted(false);
+				viewLicenseButton.setOpaque(false);
+			}
 			viewLicenseButton.setPreferredSize(new Dimension(135, 25));
 			viewLicenseButton.addActionListener(new ActionListener() {
 
@@ -122,8 +124,10 @@ public class OptionsPanel extends JPanel {
 		if (reloadButton == null) {
 			reloadButton = new JButton();
 			reloadButton.setText(MineUSB.getLangUsed().getReloadButton());
-			reloadButton.setBorderPainted(false);
-			reloadButton.setOpaque(false);
+			if (!MineUSB.hasJavaDesign()) {
+				reloadButton.setBorderPainted(false);
+				reloadButton.setOpaque(false);
+			}
 			reloadButton.setPreferredSize(new Dimension(135, 25));
 			reloadButton.addActionListener(new ActionListener() {
 
@@ -142,8 +146,10 @@ public class OptionsPanel extends JPanel {
 		if (quitButton == null) {
 			quitButton = new JButton();
 			quitButton.setText(MineUSB.getLangUsed().getQuitButton());
-			quitButton.setBorderPainted(false);
-			quitButton.setOpaque(false);
+			if (!MineUSB.hasJavaDesign()) {
+				quitButton.setBorderPainted(false);
+				quitButton.setOpaque(false);
+			}
 			quitButton.setPreferredSize(new Dimension(135, 25));
 			quitButton.addActionListener(new ActionListener() {
 

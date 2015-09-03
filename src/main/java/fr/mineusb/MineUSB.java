@@ -15,6 +15,7 @@ import fr.mineusb.system.launchers.LauncherManager;
 import fr.mineusb.ui.LicenseFrame;
 import fr.mineusb.ui.MineUSBFrame;
 import fr.mineusb.ui.OptionsFrame;
+import fr.mineusb.ui.panels.CreditsPanel;
 import fr.mineusb.ui.panels.LaunchersPanel;
 import fr.mineusb.ui.panels.MineUSBPanel;
 import fr.mineusb.ui.panels.OptionsPanel;
@@ -41,6 +42,8 @@ public class MineUSB {
 	private static File binFolder;
 	private static File dataFolder;
 	private static File mineusbFolder;
+	// Utils
+	private static boolean java_design = false;
 
 	public static void main(String[] args) {
 		// Initialize MineUSBLogger
@@ -50,31 +53,41 @@ public class MineUSB {
 		console.info("Starting MineUSB " + version);
 		os = OS.getCurrentPlatform();
 		console.info("OS used: " + MineSystem.getCurrentOS());
-		
+
 		System.setProperty("java.net.preferIPv4Stack", "true");
 
-		console.printInfo("Initializing of look and feel... ");
-		// Initialize look and feel
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			console.println("Done.");
-		} catch (Throwable ignored) {
-			try {
-				console.println("Failed.");
-				console.printError("Your java failed to provide normal look and feel, trying the old fallback now.. ");
-				UIManager.setLookAndFeel(UIManager
-						.getCrossPlatformLookAndFeelClassName());
-				console.println("Done.");
-			} catch (Throwable t) {
-				console.println("Failed.");
-				console.error("MineUSB has crashed");
-				console.error("Unexpected exception setting look and feel");
-				t.printStackTrace();
-				console.error("Force MineUSB to stop...");
-				return;
+		for (String str : args) {
+			if (str.equalsIgnoreCase("--java_design")) {
+				java_design = true;
 			}
 		}
 
+		console.printInfo("Initializing of look and feel... ");
+		// Initialize look and feel
+		if (!java_design) {
+			try {
+				UIManager.setLookAndFeel(UIManager
+						.getSystemLookAndFeelClassName());
+				console.println("Done.");
+			} catch (Throwable ignored) {
+				try {
+					console.println("Failed.");
+					console.printError("Your java failed to provide normal look and feel, trying the old fallback now.. ");
+					UIManager.setLookAndFeel(UIManager
+							.getCrossPlatformLookAndFeelClassName());
+					console.println("Done.");
+				} catch (Throwable t) {
+					console.println("Failed.");
+					console.error("MineUSB has crashed");
+					console.error("Unexpected exception setting look and feel");
+					t.printStackTrace();
+					console.error("Force MineUSB to stop...");
+					return;
+				}
+			}
+
+		} else
+			console.println("Use Java look and feel.");
 		// Files
 		binFolder = new File("bin/");
 		dataFolder = new File("data/");
@@ -97,6 +110,14 @@ public class MineUSB {
 
 		// Configuration
 		config = new MineUSBConfig(new File(mineusbFolder, "config.properties"));
+		try {
+			LauncherManager.getLauncher(config.getLauncherType());
+		} catch (LauncherNotFoundException e) {
+			console.error("The launcher '" + config.getLauncherType()
+					+ "' was not exists! Reset the configuration...");
+			config.setLauncherType("Minecraft");
+			MineUSBConfig.reloadConfiguration();
+		}
 
 		// Initialize frame
 		new Thread() {
@@ -117,6 +138,10 @@ public class MineUSB {
 				console.info("MineUSB has stopped!");
 			}
 		});
+	}
+
+	public static boolean hasJavaDesign() {
+		return java_design;
 	}
 
 	public static OptionsFrame getOptionsFrame() {
@@ -215,6 +240,23 @@ public class MineUSB {
 		// Websites online label
 		OptionsPanel.getWebsitesOnlineLabel().setText(
 				"<html><b>" + lang.getWebsitesOnline() + "</b></html>");
+		// Credits
+		CreditsPanel.getCreditsLabel().setText(
+				"<html><b>" + lang.getCreditsText() + "</b></html>");
+		CreditsPanel.getW67clementLabel().setText(
+				"<html>- <b><font color=\"#00CC00\">w67clement</font></b>: "
+						+ lang.getW67clementDescription() + ".<html>");
+		CreditsPanel.getMentor6561Label().setText(
+				"<html>- <b><font color=\"#00CC00\">mentor6561</font></b>: "
+						+ lang.getMentor6561Description() + ".</html>");
+		// Special thanks to
+		CreditsPanel.getSpecialThanksLabel().setText(
+				"<html><b>" + lang.getSpecialThanksToText() + "</b></html>");
+		CreditsPanel.getTheShark34Label().setText(
+				"<html>- <b><font color=\"#00CC00\">TheShark34</font></b>: "
+						+ lang.getTheShark34Description() + ".</html>");
+		CreditsPanel.getSupportersLabel().setText(
+				"<html><b>" + lang.getSupportersText() + ".</b></html>");
 		// Skins server
 		OptionsPanel.getSkinsServerOnlineLabel().setText(
 				"<html>&nbsp;" + lang.getLoadingText()

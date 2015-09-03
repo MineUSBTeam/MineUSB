@@ -7,6 +7,7 @@ import java.util.List;
 import fr.mineusb.MineUSB;
 import fr.mineusb.exceptions.LauncherNotFoundException;
 import fr.mineusb.system.launchers.defaults.DefaultLauncher;
+import fr.mineusb.system.launchers.defaults.NationsGloryLauncher;
 import fr.mineusb.system.launchers.defaults.Skyolauncher;
 
 /**
@@ -22,15 +23,18 @@ public class LauncherManager {
 	public LauncherManager() {
 		// Register defaults launcher
 		DefaultLauncher launcher = new DefaultLauncher();
+		NationsGloryLauncher nationsGlory = new NationsGloryLauncher();
 		Skyolauncher skyoLauncher = new Skyolauncher();
 		launchers.put(launcher.getName(), launcher);
+		launchers.put(nationsGlory.getName(), nationsGlory);
 		launchers.put(skyoLauncher.getName(), skyoLauncher);
 	}
 
 	public static void registerLauncher(Launcher launcher) {
 		if (!launchers.containsKey(launcher.getName())) {
 			launchers.put(launcher.getName(), launcher);
-			MineUSB.getConsole().info("Launcher: " + launcher.getName() + " was registered!");
+			MineUSB.getConsole().info(
+					"Launcher: " + launcher.getName() + " was registered!");
 		}
 	}
 

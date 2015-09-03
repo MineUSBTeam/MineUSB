@@ -1,7 +1,6 @@
 package fr.mineusb.ui.panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -34,7 +33,6 @@ public class LauncherPanel extends JPanel {
 		JLabel comingSoonLabel = new JLabel();
 		comingSoonLabel.setForeground(Color.WHITE);
 		comingSoonLabel.setBounds(15, 66, 365, 44);
-		comingSoonLabel.setPreferredSize(new Dimension(385, 50));
 		comingSoonLabel.setHorizontalAlignment(0);
 		comingSoonLabel
 				.setText("<html><br /><br /><br /> Hello! <br /> This part was not finished! <br /> Please wait...</html>");

@@ -15,15 +15,16 @@ import fr.mineusb.MineUSB;
 import fr.mineusb.MineUSBConstants;
 import fr.mineusb.system.launchers.Launcher;
 import fr.mineusb.utils.FileUtils;
+import fr.w67clement.core.system.MineSystem;
 import fr.w67clement.core.system.OS;
 import fr.w67clement.core.ui.dialogs.DownloadDialog;
 import fr.w67clement.core.utils.Utils;
 
-public class Skyolauncher extends Launcher {
+public class NationsGloryLauncher extends Launcher {
 
-	public Skyolauncher() {
-		this.setName("Skyolauncher");
-		this.setDescription("A flexible Minecraft launcher, made by Skyost.");
+	public NationsGloryLauncher() {
+		this.setName("NationsGlory");
+		this.setDescription("Launcher of NationsGlory.");
 		// OS compatibility
 		List<OS> osCompatibility = new ArrayList<OS>();
 		osCompatibility.add(OS.WINDOWS);
@@ -31,15 +32,20 @@ public class Skyolauncher extends Launcher {
 		osCompatibility.add(OS.LINUX);
 		osCompatibility.add(OS.SOLARIS);
 		this.setOSCompatibilityList(osCompatibility);
-		this.setDownloadURL("http://files.skyost.eu/files/projects/Skyolauncher.jar");
-		this.setFile(new File("bin/Skyolauncher.jar"));
+		if (MineSystem.getCurrentPlatform() == OS.WINDOWS) {
+			this.setDownloadURL("https://launcher.nationsglory.fr/NationsGlory.exe");
+			this.setFile(new File("bin/NationsGlory.exe"));
+		} else {
+			this.setDownloadURL("https://launcher.nationsglory.fr/NationsGlory.jar");
+			this.setFile(new File("bin/NationsGlory.jar"));
+		}
 	}
 
 	@Override
 	public ImageIcon getImageIcon() {
 		try {
 			if (Utils
-					.isOnline("http://www.skyost.eu/skyolauncher/res/skyolauncher.png")) {
+					.isOnline("https://www.nationsglory.fr/theme/site/img/logo.png")) {
 				// return new ImageIcon(
 				// Toolkit.getDefaultToolkit()
 				// .getImage(
@@ -49,19 +55,19 @@ public class Skyolauncher extends Launcher {
 					return new ImageIcon(
 							ImageIO.read(
 									new URL(
-											"http://www.skyost.eu/skyolauncher/res/skyolauncher.png")
+											"https://www.nationsglory.fr/theme/site/img/logo.png")
 											.openStream()).getScaledInstance(
 									300, 75, 16));
 				} catch (IOException e) {
 					MineUSB.getConsole()
 							.warning(
-									"MineUSB can't load Skyolauncher logo, you running in offline mode?");
+									"MineUSB can't load NationsGlory logo, you running in offline mode?");
 					return super.getImageIcon();
 				}
 			} else {
 				MineUSB.getConsole()
 						.warning(
-								"MineUSB can't load Skyolauncher logo, you running in offline mode?");
+								"MineUSB can't load NationsGlory logo, you running in offline mode?");
 				return super.getImageIcon();
 			}
 		} catch (MalformedURLException e) {
@@ -73,7 +79,7 @@ public class Skyolauncher extends Launcher {
 	public boolean runLauncher() {
 		boolean runSuccess = true;
 		DownloadDialog dialog = new DownloadDialog("Running launcher...",
-				"Running Skyolauncher...",
+				"Running NationsGlory's Launcher...",
 				Toolkit.getDefaultToolkit().getImage(
 						MineUSB.class
 								.getResource(MineUSBConstants.FAVICON_PATH)));
@@ -86,7 +92,7 @@ public class Skyolauncher extends Launcher {
 			runSuccess = Utils.download(this.getDownloadURL_inString(),
 					this.getFile(), dialog);
 			dialog.setTitle("Running launcher...");
-			dialog.setText("Running Skyolauncher...");
+			dialog.setText("Running NationsGlory's Launcher...");
 			dialog.getProgressBar().setIndeterminate(true);
 		}
 
@@ -96,22 +102,26 @@ public class Skyolauncher extends Launcher {
 			if (!workingDirectory.exists())
 				workingDirectory.mkdirs();
 			if (OS.getCurrentPlatform() == OS.WINDOWS) {
-				File scriptFile = new File("Skyolauncher.bat");
+				File scriptFile = new File("NationsGlory.bat");
 				if (!scriptFile.exists()) {
-					FileUtils.generateRunJavaLauncherScriptWindows(scriptFile,
-							"Launching Skyolauncher", this.getFile());
+					FileUtils
+							.generateRunJavaLauncherScriptWindows(scriptFile,
+									"Launching NationsGlory's Launcher",
+									this.getFile());
 				}
 				Runtime runtime = Runtime.getRuntime();
 				try {
-					runtime.exec("cmd /c start Skyolauncher.bat");
+					runtime.exec("cmd /c start NationsGlory.bat");
 				} catch (IOException e) {
 					runSuccess = false;
 				}
 			} else if (OS.getCurrentPlatform() == OS.MAC_OSX) {
-				File scriptFile = new File("Skyolauncher.sh");
+				File scriptFile = new File("NationsGlory.sh");
 				if (!scriptFile.exists()) {
-					FileUtils.generateRunLauncherScriptMac(scriptFile,
-							"Launching Skyolauncher", this.getFile());
+					FileUtils
+							.generateRunLauncherScriptMac(scriptFile,
+									"Launching NationsGlory's Launcher",
+									this.getFile());
 				}
 				Runtime runtime = Runtime.getRuntime();
 				try {
@@ -120,10 +130,12 @@ public class Skyolauncher extends Launcher {
 					runSuccess = false;
 				}
 			} else if (OS.getCurrentPlatform() == OS.LINUX) {
-				File scriptFile = new File("Skyolauncher.sh");
+				File scriptFile = new File("NationsGlory.sh");
 				if (!scriptFile.exists()) {
-					FileUtils.generateRunLauncherScriptLinux(scriptFile,
-							"Launching Skyolauncher", this.getFile());
+					FileUtils
+							.generateRunLauncherScriptLinux(scriptFile,
+									"Launching NationsGlory's Launcher",
+									this.getFile());
 				}
 				Runtime runtime = Runtime.getRuntime();
 				try {
@@ -137,4 +149,5 @@ public class Skyolauncher extends Launcher {
 		dialog.dispose();
 		return runSuccess;
 	}
+
 }

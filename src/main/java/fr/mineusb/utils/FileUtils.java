@@ -41,6 +41,37 @@ public class FileUtils {
 		}
 	}
 	
+	public static void generateRunLauncherScriptWindows(File file, String title, File runFile, String dir) {
+		PrintWriter output = null;
+		try {
+			if (file.exists()) {
+				file.delete();
+			}
+			output = new PrintWriter(file);
+			console.info("=======================[" + file.getName() + "]========================");
+			output.println("@echo off");
+			console.info("@echo off");
+			output.println("title " + title);
+			console.info("title " + title);
+			output.println("@echo Setting the APPDATA Path....");
+			console.info("@echo Setting the APPDATA Path....");
+			output.println("set APPDATA=%CD%\\data");
+			console.info("set APPDATA=%CD%\\data");
+			output.println("@echo Running...");
+			console.info("@echo Running...");
+			output.println("start bin\\" + dir + "\\" + runFile.getName());
+			console.info("start bin\\" + dir + "\\" + runFile.getName());
+			output.println("@echo Finish!");
+			console.info("@echo Finish!");
+			output.println("exit");
+			console.info("exit");
+			console.info("=======================[" + file.getName() + "]========================");
+			output.close();
+		} catch (Throwable e) {
+
+		}
+	}
+	
 	public static void generateRunJavaLauncherScriptWindows(File file, String title, File runFile) {
 		PrintWriter output = null;
 		try {

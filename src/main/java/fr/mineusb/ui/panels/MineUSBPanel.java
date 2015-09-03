@@ -84,8 +84,7 @@ public class MineUSBPanel extends JPanel {
 		if (logo == null) {
 			logo = new JLabel();
 			logo.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(
-					MineUSB.class
-							.getResource("/fr/mineusb/res/mineusb.png"))));
+					MineUSB.class.getResource("/fr/mineusb/res/mineusb.png"))));
 			logo.setSize(new Dimension(200, 50));
 		}
 		return logo;
@@ -115,11 +114,9 @@ public class MineUSBPanel extends JPanel {
 							.getLangUsed()
 							.getAuthorsLabel()
 							.replace("<author>",
-									"<font color=\"#00CC00\">67clement</font>")
-							.replace(
-									"<contributors>",
-									"<font color=\"#00CC00\">xolider</font>,"
-											+ " <font color=\"#00CC00\">mentor6561</font>")
+									"<font color=\"#00CC00\">w67clement</font>")
+							.replace("<contributors>",
+									"<font color=\"#00CC00\">mentor6561</font>")
 					+ "</html>");
 		}
 		return authors;
@@ -256,8 +253,7 @@ public class MineUSBPanel extends JPanel {
 			// Background
 			try {
 				this.bgImage = ImageIO.read(
-						MineUSB.class
-								.getResource(MineUSBConstants.STONE_PATH))
+						MineUSB.class.getResource(MineUSBConstants.STONE_PATH))
 						.getScaledInstance(32, 32, 16);
 			} catch (IOException e) {
 				logger.error("Unexpected exception initializing MineUSB's panel");

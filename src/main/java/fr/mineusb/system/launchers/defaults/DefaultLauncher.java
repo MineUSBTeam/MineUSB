@@ -4,9 +4,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.PasswordAuthentication;
 import java.net.Proxy;
 import java.net.URL;
@@ -32,6 +30,7 @@ public class DefaultLauncher extends Launcher {
 		osCompatibility.add(OS.WINDOWS);
 		osCompatibility.add(OS.MAC_OSX);
 		osCompatibility.add(OS.LINUX);
+		osCompatibility.add(OS.SOLARIS);
 		this.setOSCompatibilityList(osCompatibility);
 		if (OS.getCurrentPlatform() == OS.WINDOWS) {
 			this.setDownloadURL("https://launcher.mojang.com/download/Minecraft.exe");
@@ -88,7 +87,9 @@ public class DefaultLauncher extends Launcher {
 				} catch (IOException e) {
 					runSuccess = false;
 				}
-			} else if (OS.getCurrentPlatform() == OS.MAC_OSX) {
+			} else if ((OS.getCurrentPlatform() == OS.MAC_OSX)
+					|| (OS.getCurrentPlatform() == OS.LINUX)
+					|| (OS.getCurrentPlatform() == OS.SOLARIS)) {
 				dialog.setText("Using ClassLoader... Loading Minecraft Bootstrap, please wait...");
 				MineUSB.getConsole().info(
 						"Loading Minecraft Bootstrap with ClassLoader...");
@@ -102,112 +103,15 @@ public class DefaultLauncher extends Launcher {
 									String[].class });
 					Proxy proxy = Proxy.NO_PROXY;
 					Method mainMethod = mcBootstrap.getMethod("execute",
-							new Class<?>[] { Boolean.class });
+							new Class<?>[] { boolean.class });
 					dialog.dispose();
 					MineUSB.shutdown();
 					mainMethod.invoke(constructor.newInstance(workingDirectory,
 							proxy, null, new String[] {}), false);
-				} catch (ClassNotFoundException e) {
-					runSuccess = false;
-				} catch (MalformedURLException e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 					runSuccess = false;
-				} catch (NoSuchMethodException e) {
-					runSuccess = false;
-				} catch (SecurityException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalArgumentException e) {
-					runSuccess = false;
-				} catch (InvocationTargetException e) {
-					runSuccess = false;
-				} catch (InstantiationException e) {
-					runSuccess = false;
-				}
-			} else if (OS.getCurrentPlatform() == OS.LINUX) {
-				dialog.setText("Using ClassLoader... Loading Minecraft Bootstrap, please wait...");
-				MineUSB.getConsole().info(
-						"Loading Minecraft Bootstrap with ClassLoader...");
-				try {
-					Class<?> mcBootstrap = new URLClassLoader(new URL[] { this
-							.getFile().toURI().toURL() })
-							.loadClass("net.minecraft.bootstrap.Bootstrap");
-					Constructor<?> constructor = mcBootstrap
-							.getConstructor(new Class<?>[] { File.class,
-									Proxy.class, PasswordAuthentication.class,
-									String[].class });
-					Proxy proxy = Proxy.NO_PROXY;
-					Method mainMethod = mcBootstrap.getMethod("execute",
-							new Class<?>[] { Boolean.class });
-					dialog.dispose();
-					MineUSB.shutdown();
-					mainMethod.invoke(constructor.newInstance(workingDirectory,
-							proxy, null, new String[] {}), false);
-				} catch (ClassNotFoundException e) {
-					runSuccess = false;
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (NoSuchMethodException e) {
-					runSuccess = false;
-				} catch (SecurityException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalArgumentException e) {
-					runSuccess = false;
-				} catch (InvocationTargetException e) {
-					runSuccess = false;
-				} catch (InstantiationException e) {
-					runSuccess = false;
-				}
-			} else if (OS.getCurrentPlatform() == OS.SOLARIS) {
-				dialog.setText("Using ClassLoader... Loading Minecraft Bootstrap, please wait...");
-				MineUSB.getConsole().info(
-						"Loading Minecraft Bootstrap with ClassLoader...");
-				try {
-					Class<?> mcBootstrap = new URLClassLoader(new URL[] { this
-							.getFile().toURI().toURL() })
-							.loadClass("net.minecraft.bootstrap.Bootstrap");
-					Constructor<?> constructor = mcBootstrap
-							.getConstructor(new Class<?>[] { File.class,
-									Proxy.class, PasswordAuthentication.class,
-									String[].class });
-					Proxy proxy = Proxy.NO_PROXY;
-					Method mainMethod = mcBootstrap.getMethod("execute",
-							new Class<?>[] { Boolean.class });
-					dialog.dispose();
-					MineUSB.shutdown();
-					mainMethod.invoke(constructor.newInstance(workingDirectory,
-							proxy, null, new String[] {}), false);
-				} catch (ClassNotFoundException e) {
-					runSuccess = false;
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (NoSuchMethodException e) {
-					runSuccess = false;
-				} catch (SecurityException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-					runSuccess = false;
-				}
+				} 
 			}
 		}
 

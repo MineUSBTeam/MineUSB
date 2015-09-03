@@ -18,10 +18,13 @@ public class MineUSBFrame extends JFrame {
 
 	// Console
 	private static MineLogger console;
+	// Instance
+	private static MineUSBFrame frame;
 
 	public MineUSBFrame() {
 		console = MineUSB.getConsole();
 		console.info("Loading frame... ");
+		frame = this;
 		this.setTitle("MineUSB - " + MineUSB.getVersion());
 		this.setPreferredSize(new Dimension(500, 300));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,5 +37,10 @@ public class MineUSBFrame extends JFrame {
 						MineUSB.class
 								.getResource(MineUSBConstants.FAVICON_PATH)));
 		this.setContentPane(new MineMenuBar());
+	}
+	
+	public static void resizeFrame(Dimension dimension) {
+		frame.setSize(dimension);
+		frame.setPreferredSize(dimension);
 	}
 }

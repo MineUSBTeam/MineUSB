@@ -41,11 +41,12 @@ public class LaunchersPanel extends JPanel {
 	private static JComboBox<String> launcherList = null;
 
 	public LaunchersPanel() {
+		this.setLayout(null);
 
 		TexturedPanel stonePanel = new TexturedPanel(
 				MineUSBConstants.STONE_PATH);
 
-		stonePanel.setPreferredSize(new Dimension(330, 175));
+		stonePanel.setBounds(60, 20, 375, 200);
 
 		stonePanel.add(getLauncherLogo());
 		stonePanel.add(getLauncherInformations());
@@ -138,6 +139,7 @@ public class LaunchersPanel extends JPanel {
 							+ launcher.getDescription() + "</font><br />"
 							+ "<b>OS: </b><font color=\"#00CC00\">" + os
 							+ "</font></html>");
+			launcherInfos.setPreferredSize(new Dimension(375, 75));
 			launcherInfos.setForeground(Color.WHITE);
 		}
 		return launcherInfos;

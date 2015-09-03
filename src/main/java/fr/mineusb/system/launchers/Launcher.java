@@ -119,7 +119,7 @@ public class Launcher {
 	public ImageIcon getImageIcon() {
 		if (this.imageIconPath == null) {
 			return  new ImageIcon(Toolkit.getDefaultToolkit().getImage(
-					MineUSB.class.getResource("/com/aol/mineusb/res/launchers/default.png")));
+					MineUSB.class.getResource("/fr/mineusb/res/launchers/default.png")));
 		} else {
 			return new ImageIcon(Toolkit.getDefaultToolkit().getImage(
 					MineUSB.class.getResource(this.imageIconPath)));

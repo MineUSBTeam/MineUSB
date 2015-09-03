@@ -13,7 +13,7 @@ public class FR_Lang implements Lang {
 	}
 
 	public String getDescriptionLabel() {
-		return "Utilisez Minecraft sur votre clef USB!";
+		return "Jouez à Minecraft sur votre clef USB!";
 	}
 
 	public String getPlayButton() {
@@ -29,7 +29,7 @@ public class FR_Lang implements Lang {
 	}
 
 	public String getAuthorsLabel() {
-		return "Auteur: <author> <br />Contributeurs: <contributors>";
+		return "Auteur: <author> <br />Contributeur: <contributors>";
 	}
 
 	public String getWebsitesOnline() {
@@ -58,5 +58,35 @@ public class FR_Lang implements Lang {
 	
 	public String getLoadingText() {
 		return "Chargement...";
+	}
+
+	@Override
+	public String getSpecialThanksToText() {
+		return "Remerciement spécial à: ";
+	}
+
+	@Override
+	public String getCreditsText() {
+		return "Crédits";
+	}
+	
+	@Override
+	public String getW67clementDescription() {
+		return "Auteur de MineUSB";
+	}
+
+	@Override
+	public String getMentor6561Description() {
+		return "Auteur du logo et de l'icône de MineUSB";
+	}
+
+	@Override
+	public String getTheShark34Description() {
+		return "Il m'a aidé pour <font color=\"#00CC00\">Gradle</font>";
+	}
+
+	@Override
+	public String getSupportersText() {
+		return "Et tous les supporteurs de MineUSB";
 	}
 }

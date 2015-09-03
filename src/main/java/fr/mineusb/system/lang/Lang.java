@@ -33,5 +33,17 @@ public interface Lang {
 	public String getMultiplayerSessionLabel();
 	
 	public String getLoadingText();
+	
+	public String getSpecialThanksToText();
+	
+	public String getCreditsText();
+	
+	public String getW67clementDescription();
+	
+	public String getMentor6561Description();
+	
+	public String getTheShark34Description();
+	
+	public String getSupportersText();
 
 }
