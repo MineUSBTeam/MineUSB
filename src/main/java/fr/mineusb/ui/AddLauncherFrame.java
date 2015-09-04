@@ -20,6 +20,8 @@ import java.io.PrintWriter;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import fr.mineusb.MineUSB;
+
 public class AddLauncherFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -114,6 +116,7 @@ public class AddLauncherFrame extends JFrame {
 					pr.append("Description=" + textField_3.getText() + "\n");
 					pr.close();
 					JOptionPane.showConfirmDialog(AddLauncherFrame.this, "Launcher added !", "Launcher Added", JOptionPane.INFORMATION_MESSAGE);
+					MineUSB.loadLaunchers();
 					AddLauncherFrame.this.setVisible(false);
 				}
 				else {

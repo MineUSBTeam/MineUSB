@@ -337,7 +337,6 @@ public class MineUSB {
 	}
 
 	public static void applyLauncher(Launcher launcher) {
-		LaunchersPanel.getLauncherLogo().setIcon(launcher.getImageIcon());
 		String os = "";
 		for (int i = 0; i < launcher.getOSCompatibilityList().size(); i++) {
 			OS os2 = launcher.getOSCompatibilityList().get(i);
@@ -358,6 +357,7 @@ public class MineUSB {
 						+ launcher.getDescription() + "</font><br />"
 						+ "<b>OS: </b><font color=\"#00CC00\">" + os
 						+ "</font></html>");
+		LaunchersPanel.getLauncherLogo().setIcon(launcher.getImageIcon());
 	}
 
 	public static void shutdown() {

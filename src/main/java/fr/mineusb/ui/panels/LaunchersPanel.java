@@ -50,7 +50,7 @@ public class LaunchersPanel extends JPanel {
 				MineUSBConstants.STONE_PATH);
 
 		stonePanel.setBounds(60, 20, 375, 200);
-
+		
 		stonePanel.add(getLauncherLogo());
 		stonePanel.add(getLauncherInformations());
 		stonePanel.add(getLauncherList());
