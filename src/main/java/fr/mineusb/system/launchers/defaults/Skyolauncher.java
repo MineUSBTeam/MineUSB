@@ -3,8 +3,11 @@ package fr.mineusb.system.launchers.defaults;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +73,7 @@ public class Skyolauncher extends Launcher {
 		return super.getImageIcon();
 	}
 
+	@SuppressWarnings("resource")
 	public boolean runLauncher() {
 		boolean runSuccess = true;
 		DownloadDialog dialog = new DownloadDialog("Running launcher...",
@@ -108,7 +112,7 @@ public class Skyolauncher extends Launcher {
 					runSuccess = false;
 				}
 			} else if (OS.getCurrentPlatform() == OS.MAC_OSX) {
-				File scriptFile = new File("Skyolauncher.sh");
+				File scriptFile = new File("Skyolauncher_mac.sh");
 				if (!scriptFile.exists()) {
 					FileUtils.generateRunLauncherScriptMac(scriptFile,
 							"Launching Skyolauncher", this.getFile());
@@ -119,18 +123,26 @@ public class Skyolauncher extends Launcher {
 				} catch (IOException e) {
 					runSuccess = false;
 				}
-			} else if (OS.getCurrentPlatform() == OS.LINUX) {
-				File scriptFile = new File("Skyolauncher.sh");
-				if (!scriptFile.exists()) {
-					FileUtils.generateRunLauncherScriptLinux(scriptFile,
-							"Launching Skyolauncher", this.getFile());
-				}
-				Runtime runtime = Runtime.getRuntime();
+			} else if (OS.getCurrentPlatform() == OS.LINUX || OS.getCurrentPlatform() == OS.SOLARIS) {
+				dialog.setText("Using ClassLoader... Loading Minecraft Bootstrap, please wait...");
+				MineUSB.getConsole().info(
+						"Loading Minecraft Bootstrap with ClassLoader...");
 				try {
-					runtime.exec(new String[] { "sh", scriptFile.getPath() });
-				} catch (IOException e) {
+					System.setProperty("user.home", MineUSB.getDataFolder().getAbsolutePath());
+					Class<?> skyolauncherClass = new URLClassLoader(new URL[] { this
+							.getFile().toURI().toURL() })
+							.loadClass("fr.skyost.launcher.Skyolauncher");
+					Constructor<?> constructor = skyolauncherClass
+							.getConstructor(new Class<?>[] { });
+					Method mainMethod = skyolauncherClass.getMethod("main",
+							new Class<?>[] { String[].class });
+					dialog.dispose();
+					MineUSB.shutdown();
+					mainMethod.invoke(constructor.newInstance(new Object[] {}),new Object[] { new String[] { "-console" }});
+				} catch (Throwable e) {
+					e.printStackTrace();
 					runSuccess = false;
-				}
+				} 
 			}
 		}
 

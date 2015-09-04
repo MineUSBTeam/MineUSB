@@ -7,13 +7,18 @@ public class FR_Lang implements Lang {
 	public String getName() {
 		return "Français";
 	}
-	
+
 	public String getId() {
 		return "FRENCH";
 	}
 
 	public String getDescriptionLabel() {
 		return "Jouez à Minecraft sur votre clef USB!";
+	}
+	
+	@Override
+	public String getSelectedLauncherLabel() {
+	return "Launcher sélectionné: ";
 	}
 
 	public String getPlayButton() {
@@ -51,11 +56,11 @@ public class FR_Lang implements Lang {
 	public String getSkinsServerLabel() {
 		return "Serveur de skins";
 	}
-	
+
 	public String getMultiplayerSessionLabel() {
 		return "Session multijoueur";
 	}
-	
+
 	public String getLoadingText() {
 		return "Chargement...";
 	}
@@ -69,10 +74,15 @@ public class FR_Lang implements Lang {
 	public String getCreditsText() {
 		return "Crédits";
 	}
-	
+
 	@Override
 	public String getW67clementDescription() {
 		return "Auteur de MineUSB";
+	}
+
+	@Override
+	public String getXoliderDescription() {
+		return "Un développeur de MineUSB.";
 	}
 
 	@Override
@@ -88,10 +98,5 @@ public class FR_Lang implements Lang {
 	@Override
 	public String getSupportersText() {
 		return "Et tous les supporteurs de MineUSB";
-	}
-
-	@Override
-	public String getSelectedLauncherLabel() {
-		return "Launcher s�l�ctionn�: ";
 	}
 }

@@ -1,8 +1,6 @@
 package fr.mineusb.ui;
 
 import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import fr.mineusb.ui.panels.CreditsPanel;
 import fr.mineusb.ui.panels.LauncherPanel;
@@ -37,16 +35,6 @@ public class MineMenuBar extends JTabbedPane {
 		this.addTab("Credits", creditsPanel);
 
 		this.setSelectedComponent(mainPanel);
-		
-		this.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				if(instance.getSelectedIndex() == 0) {
-					MineUSBPanel.update();
-				}
-			}
-		});
 	}
 
 	public static MineMenuBar getInstance() {

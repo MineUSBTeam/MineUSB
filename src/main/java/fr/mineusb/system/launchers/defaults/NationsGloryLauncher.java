@@ -116,7 +116,7 @@ public class NationsGloryLauncher extends Launcher {
 					runSuccess = false;
 				}
 			} else if (OS.getCurrentPlatform() == OS.MAC_OSX) {
-				File scriptFile = new File("NationsGlory.sh");
+				File scriptFile = new File("NationsGlory_mac.sh");
 				if (!scriptFile.exists()) {
 					FileUtils
 							.generateRunLauncherScriptMac(scriptFile,

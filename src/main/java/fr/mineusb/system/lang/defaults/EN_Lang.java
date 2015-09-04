@@ -16,6 +16,11 @@ public class EN_Lang implements Lang {
 		return "Play Minecraft on your USB key!";
 	}
 
+	@Override
+	public String getSelectedLauncherLabel() {
+		return "Selected Launcher: ";
+	}
+
 	public String getPlayButton() {
 		return "Play";
 	}
@@ -51,11 +56,11 @@ public class EN_Lang implements Lang {
 	public String getSkinsServerLabel() {
 		return "Skins server";
 	}
-	
+
 	public String getMultiplayerSessionLabel() {
 		return "Multiplayer session";
 	}
-	
+
 	public String getLoadingText() {
 		return "Loading...";
 	}
@@ -76,6 +81,11 @@ public class EN_Lang implements Lang {
 	}
 
 	@Override
+	public String getXoliderDescription() {
+		return "An developper of MineUSB.";
+	}
+
+	@Override
 	public String getMentor6561Description() {
 		return "Author of MineUSB's logo and icon";
 	}
@@ -88,10 +98,5 @@ public class EN_Lang implements Lang {
 	@Override
 	public String getSupportersText() {
 		return "And all supporters of MineUSB";
-	}
-
-	@Override
-	public String getSelectedLauncherLabel() {
-		return "Selected Launcher: ";
 	}
 }

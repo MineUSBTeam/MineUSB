@@ -26,7 +26,7 @@ public class MineUSBFrame extends JFrame {
 		console.info("Loading frame... ");
 		frame = this;
 		this.setTitle("MineUSB - " + MineUSB.getVersion());
-		this.setPreferredSize(new Dimension(500, 350));
+		this.setPreferredSize(new Dimension(500, 300));
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.pack();

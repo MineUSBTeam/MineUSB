@@ -205,10 +205,14 @@ public class MineUSB {
 	}
 
 	public static void applyLang(final Lang lang) {
-		// Selected Launcher
-		MineUSBPanel.update();
 		// Description
 		MineUSBPanel.getDescriptionLabel().setText(lang.getDescriptionLabel());
+		// Selected launcher
+		MineUSBPanel.getSelectedLauncherLabel().setText(
+				"<html>" + lang.getSelectedLauncherLabel()
+						+ "<b><font color=\"#00CC00\">"
+						+ MineUSB.getLauncherUsed().getName()
+						+ "</font></b></html>");
 		// Play Button
 		MineUSBPanel.getPlayButton().setText(lang.getPlayButton());
 		// Options Button
@@ -338,6 +342,11 @@ public class MineUSB {
 			} else
 				os = os + ", " + os2.getOSName();
 		}
+		// Selected launcher
+		MineUSBPanel.getSelectedLauncherLabel().setText(
+				"<html>" + MineUSB.getLangUsed().getSelectedLauncherLabel()
+						+ "<b><font color=\"#00CC00\">" + launcher.getName()
+						+ "</font></b></html>");
 		LaunchersPanel.getLauncherInformations().setText(
 				"<html><b>Launcher: </b><font color=\"#00CC00\">"
 						+ launcher.getName() + "</font><br />"

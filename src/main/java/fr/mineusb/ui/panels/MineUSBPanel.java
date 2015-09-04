@@ -41,7 +41,7 @@ public class MineUSBPanel extends JPanel {
 	// Label
 	private static JLabel logo;
 	private static JLabel description;
-	private static JLabel selectedLauncher;
+	private static JLabel selectedLauncherLabel;
 	private static JLabel authors;
 	// Buttons
 	private static JButton playButton;
@@ -55,6 +55,8 @@ public class MineUSBPanel extends JPanel {
 		this.add(getLogo());
 		// Add description label
 		this.add(getDescriptionLabel());
+		// Add selected launcher label
+		this.add(getSelectedLauncherLabel());
 		// Add panel
 		ButtonsPanel buttonsPanel = new ButtonsPanel();
 		// Buttons
@@ -64,9 +66,6 @@ public class MineUSBPanel extends JPanel {
 
 		// Add buttons
 		this.add(buttonsPanel);
-		
-		// Add selected launcher name
-		this.add(getSelectedLauncher());
 
 		// Add authors label
 		this.add(getAuthorsLabel());
@@ -93,35 +92,32 @@ public class MineUSBPanel extends JPanel {
 		}
 		return logo;
 	}
-	
-	public static void update() {
-		String selected = LaunchersPanel.getLauncherList().getSelectedItem().toString();
-		selectedLauncher.setText(MineUSB.getLangUsed().getSelectedLauncherLabel() + selected);
-	}
 
 	public static JLabel getDescriptionLabel() {
 		if (description == null) {
 			description = new JLabel();
 			description.setForeground(Color.WHITE);
 			description.setBounds(15, 66, 365, 44);
-			description.setPreferredSize(new Dimension(385, 50));
+			description.setPreferredSize(new Dimension(385, 40));
 			description.setHorizontalAlignment(0);
 			description.setText(MineUSB.getLangUsed().getDescriptionLabel());
 		}
 		return description;
 	}
-	
-	public static JLabel getSelectedLauncher() {
-		String selected = LaunchersPanel.getLauncherList().getSelectedItem().toString();
-		if(selectedLauncher == null) {
-			selectedLauncher = new JLabel();
-			selectedLauncher.setForeground(Color.WHITE);
-			selectedLauncher.setBounds(15, 66, 365, 44);
-			selectedLauncher.setPreferredSize(new Dimension(300, 50));
-			selectedLauncher.setHorizontalAlignment(0);
-			selectedLauncher.setText(MineUSB.getLangUsed().getSelectedLauncherLabel() + selected);
+
+	public static JLabel getSelectedLauncherLabel() {
+		if (selectedLauncherLabel == null) {
+			selectedLauncherLabel = new JLabel();
+			selectedLauncherLabel.setForeground(Color.WHITE);
+			selectedLauncherLabel.setPreferredSize(new Dimension(385, 25));
+			selectedLauncherLabel.setHorizontalAlignment(0);
+			selectedLauncherLabel.setText("<html>"
+					+ MineUSB.getLangUsed().getSelectedLauncherLabel()
+					+ "<b><font color=\"#00CC00\">"
+					+ MineUSB.getLauncherUsed().getName()
+					+ "</b></font></html>");
 		}
-		return selectedLauncher;
+		return selectedLauncherLabel;
 	}
 
 	public static JLabel getAuthorsLabel() {
@@ -137,8 +133,9 @@ public class MineUSBPanel extends JPanel {
 							.getAuthorsLabel()
 							.replace("<author>",
 									"<font color=\"#00CC00\">w67clement</font>")
-							.replace("<contributors>",
-									"<font color=\"#00CC00\">mentor6561</font>")
+							.replace(
+									"<contributors>",
+									"<font color=\"#00CC00\">mentor6561</font>, <font color=\"#00CC00\">xolider</font>")
 					+ "</html>");
 		}
 		return authors;

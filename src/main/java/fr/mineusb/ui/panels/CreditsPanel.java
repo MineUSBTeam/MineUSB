@@ -17,19 +17,19 @@ public class CreditsPanel extends TexturedPanel {
 
 	private static JLabel credits;
 	private static JLabel w67clement;
+	private static JLabel xolider;
 	private static JLabel mentor6561;
 	private static JLabel specialThanks;
 	private static JLabel theshark34;
 	private static JLabel supporters;
-	private static JLabel xolider;
 
 	public CreditsPanel() {
 		super(MineUSBConstants.DIRT_PATH);
 		this.setLayout(null);
 		this.add(getCreditsLabel());
 		this.add(getW67clementLabel());
-		this.add(getMentor6561Label());
 		this.add(getXoliderLabel());
+		this.add(getMentor6561Label());
 		this.add(getSpecialThanksLabel());
 		this.add(getTheShark34Label());
 		this.add(getSupportersLabel());
@@ -59,13 +59,14 @@ public class CreditsPanel extends TexturedPanel {
 		}
 		return w67clement;
 	}
-	
+
 	public static JLabel getXoliderLabel() {
-		if(xolider == null) {
+		if (xolider == null) {
 			xolider = new JLabel();
-			xolider.setText("<html>- <b><font color=\"#00CC00\">Xolider</font></b>: Developper Java. </html>");
+			xolider.setText("<html>- <b><font color=\"#00CC00\">xolider</font></b>: "
+					+ MineUSB.getLangUsed().getXoliderDescription() + ".<html>");
 			xolider.setForeground(Color.WHITE);
-			xolider.setBounds(90, 90, 450, 20);
+			xolider.setBounds(90, 65, 450, 20);
 		}
 		return xolider;
 	}
@@ -78,7 +79,7 @@ public class CreditsPanel extends TexturedPanel {
 							+ MineUSB.getLangUsed().getMentor6561Description()
 							+ ".</html>");
 			mentor6561.setForeground(Color.WHITE);
-			mentor6561.setBounds(90, 70, 450, 20);
+			mentor6561.setBounds(90, 80, 450, 20);
 		}
 		return mentor6561;
 	}
@@ -112,10 +113,9 @@ public class CreditsPanel extends TexturedPanel {
 	public static JLabel getSupportersLabel() {
 		if (supporters == null) {
 			supporters = new JLabel();
-			supporters
-					.setText("<html><b>"
-							+ MineUSB.getLangUsed().getSupportersText()
-							+ ".</b></html>");
+			supporters.setText("<html><b>"
+					+ MineUSB.getLangUsed().getSupportersText()
+					+ ".</b></html>");
 			supporters.setForeground(Color.WHITE);
 			supporters.setBounds(90, 150, 450, 20);
 		}
