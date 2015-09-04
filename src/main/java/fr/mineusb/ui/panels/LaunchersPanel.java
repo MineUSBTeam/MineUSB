@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ import fr.mineusb.exceptions.LauncherNotFoundException;
 import fr.mineusb.system.MineUSBConfig;
 import fr.mineusb.system.launchers.Launcher;
 import fr.mineusb.system.launchers.LauncherManager;
+import fr.mineusb.ui.AddLauncherFrame;
 import fr.mineusb.utils.TexturedPanel;
 import fr.w67clement.core.system.OS;
 
@@ -39,6 +41,7 @@ public class LaunchersPanel extends JPanel {
 	private static JLabel launcherLogo;
 	private static JLabel launcherInfos;
 	private static JComboBox<String> launcherList = null;
+	private static DefaultComboBoxModel<String> model;
 
 	public LaunchersPanel() {
 		this.setLayout(null);
@@ -51,7 +54,8 @@ public class LaunchersPanel extends JPanel {
 		stonePanel.add(getLauncherLogo());
 		stonePanel.add(getLauncherInformations());
 		stonePanel.add(getLauncherList());
-
+		stonePanel.add(getAddLauncherButton());
+		
 		this.add(stonePanel);
 
 		try {
@@ -68,9 +72,21 @@ public class LaunchersPanel extends JPanel {
 		}
 	}
 	
+	public static JButton getAddLauncherButton() {
+		JButton b = new JButton(MineUSB.getLangUsed().getAddLauncherText());
+		b.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new AddLauncherFrame();
+			}
+		});
+		return b;
+	}
+	
 	public static JComboBox<String> getLauncherList() {
 		if (launcherList == null) {
-			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>() {
+			model = new DefaultComboBoxModel<String>() {
 
 				/**
 				 * 
@@ -185,6 +201,10 @@ public class LaunchersPanel extends JPanel {
 				new Color(0, true), new Point2D.Float(0.0F, gh), new Color(
 						1610612736, true)));
 		graphics.fillRect(0, 0, width, gh);
+	}
+	
+	public static DefaultComboBoxModel<String> getModel() {
+		return model;
 	}
 
 }

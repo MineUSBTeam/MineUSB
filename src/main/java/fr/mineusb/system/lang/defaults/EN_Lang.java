@@ -99,4 +99,10 @@ public class EN_Lang implements Lang {
 	public String getSupportersText() {
 		return "And all supporters of MineUSB";
 	}
+
+	@Override
+	public String getAddLauncherText() {
+		// TODO Auto-generated method stub
+		return "Add a Launcher";
+	}
 }

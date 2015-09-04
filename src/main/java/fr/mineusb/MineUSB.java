@@ -1,8 +1,8 @@
 package fr.mineusb;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
-
 import javax.swing.UIManager;
 
 import fr.mineusb.exceptions.LangNotFoundException;
@@ -106,6 +106,7 @@ public class MineUSB {
 		console.printInfo("Initializing launcher and lang system... ");
 		new LauncherManager();
 		new LangManager();
+		MineUSB.loadLaunchers();
 		console.println("Done.");
 
 		// Configuration
@@ -368,6 +369,21 @@ public class MineUSB {
 		}
 		if (licenseFrame != null) {
 			licenseFrame.dispose();
+		}
+	}
+	
+	public static void loadLaunchers() {
+		File dataLaunchers = new File("data/launchers");
+		if(dataLaunchers.listFiles() != null) {
+		File[] files = dataLaunchers.listFiles();
+		for(File f: files) {
+			try {
+				LauncherManager.registerLauncher(new LauncherAddedByUser(f));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		}
 	}
 }

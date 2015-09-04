@@ -50,5 +50,7 @@ public interface Lang {
 	public String getTheShark34Description();
 
 	public String getSupportersText();
+	
+	public String getAddLauncherText();
 
 }
