@@ -27,7 +27,7 @@ import fr.w67clement.core.utils.Utils;
 
 public class MineUSB {
 
-	private static final String version = "Beta 1.0.2";
+	private static final String version = "Beta 1.0.3";
 	// Logger
 	private static MineLogger console;
 	// Configuration
