@@ -252,6 +252,9 @@ public class MineUSB {
 		CreditsPanel.getW67clementLabel().setText(
 				"<html>- <b><font color=\"#00CC00\">w67clement</font></b>: "
 						+ lang.getW67clementDescription() + ".<html>");
+		CreditsPanel.getXoliderLabel().setText(
+				"<html>- <b><font color=\"#00CC00\">xolider</font></b>: "
+						+ lang.getXoliderDescription() + ".<html>");
 		CreditsPanel.getMentor6561Label().setText(
 				"<html>- <b><font color=\"#00CC00\">mentor6561</font></b>: "
 						+ lang.getMentor6561Description() + ".</html>");
