@@ -20,8 +20,6 @@ import java.io.PrintWriter;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import fr.mineusb.MineUSB;
-
 public class AddLauncherFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -115,12 +113,18 @@ public class AddLauncherFrame extends JFrame {
 					pr.append("Image=" + ImageURL + "\n");
 					pr.append("Description=" + textField_3.getText() + "\n");
 					pr.close();
-					JOptionPane.showConfirmDialog(AddLauncherFrame.this, "Launcher added !", "Launcher Added", JOptionPane.INFORMATION_MESSAGE);
-					MineUSB.loadLaunchers();
+					JOptionPane.showConfirmDialog(AddLauncherFrame.this, "Launcher added !", "Launcher Added", JOptionPane.PLAIN_MESSAGE);
 					AddLauncherFrame.this.setVisible(false);
+					try {
+						Runtime.getRuntime().exec("java -jar MineUSB-1.0.3-BETA.jar");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					System.exit(0);
 				}
 				else {
-					JOptionPane.showConfirmDialog(AddLauncherFrame.this, "This Launcher already exist !", "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showConfirmDialog(AddLauncherFrame.this, "This Launcher already exist !", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
