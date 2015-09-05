@@ -82,7 +82,7 @@ public class EN_Lang implements Lang {
 
 	@Override
 	public String getXoliderDescription() {
-		return "An developper of MineUSB";
+		return "An developper of MineUSB.";
 	}
 
 	@Override

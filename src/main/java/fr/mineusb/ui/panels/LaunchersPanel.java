@@ -13,7 +13,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +23,6 @@ import fr.mineusb.exceptions.LauncherNotFoundException;
 import fr.mineusb.system.MineUSBConfig;
 import fr.mineusb.system.launchers.Launcher;
 import fr.mineusb.system.launchers.LauncherManager;
-import fr.mineusb.ui.AddLauncherFrame;
 import fr.mineusb.utils.TexturedPanel;
 import fr.w67clement.core.system.OS;
 
@@ -54,7 +52,6 @@ public class LaunchersPanel extends JPanel {
 		stonePanel.add(getLauncherLogo());
 		stonePanel.add(getLauncherInformations());
 		stonePanel.add(getLauncherList());
-		stonePanel.add(getAddLauncherButton());
 		
 		this.add(stonePanel);
 
@@ -70,18 +67,6 @@ public class LaunchersPanel extends JPanel {
 					"Unexpected exception initializing MineUSB's panel");
 			MineUSB.getConsole().error("Reason: Image is null?");
 		}
-	}
-	
-	public static JButton getAddLauncherButton() {
-		JButton b = new JButton(MineUSB.getLangUsed().getAddLauncherText());
-		b.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new AddLauncherFrame();
-			}
-		});
-		return b;
 	}
 	
 	public static JComboBox<String> getLauncherList() {
