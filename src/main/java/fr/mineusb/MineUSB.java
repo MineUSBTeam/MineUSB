@@ -15,6 +15,7 @@ import fr.mineusb.ui.LicenseFrame;
 import fr.mineusb.ui.MineUSBFrame;
 import fr.mineusb.ui.OptionsFrame;
 import fr.mineusb.ui.panels.CreditsPanel;
+import fr.mineusb.ui.panels.LauncherPanel;
 import fr.mineusb.ui.panels.LaunchersPanel;
 import fr.mineusb.ui.panels.MineUSBPanel;
 import fr.mineusb.ui.panels.OptionsPanel;
@@ -272,6 +273,7 @@ public class MineUSB {
 		OptionsPanel.getMultiplayerSessionOnlineLabel().setText(
 				"<html>&nbsp;" + lang.getLoadingText()
 						+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</html>");
+		LauncherPanel.getDesriptionLabel().setText("<html><br/><br/>" + lang.getDescIntegratedLauncher() + "</html>");
 		new Thread() {
 			public void run() {
 				try {

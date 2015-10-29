@@ -4,16 +4,23 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.mineusb.MineUSB;
 import fr.mineusb.MineUSBConstants;
+import fr.mineusb.launcher.LauncherFrame;
+import fr.mineusb.ui.MineUSBFrame;
 import fr.w67clement.core.logger.MineLogger;
 
 public class LauncherPanel extends JPanel {
@@ -25,19 +32,36 @@ public class LauncherPanel extends JPanel {
 
 	private Image image;
 	private Image bgImage;
+	
+	private static JLabel desc;
+	private static JButton play;
 
 	// Logger
 	private static MineLogger logger = MineUSB.getConsole();
 
 	public LauncherPanel() {
-		JLabel comingSoonLabel = new JLabel();
-		comingSoonLabel.setForeground(Color.WHITE);
-		comingSoonLabel.setBounds(15, 66, 365, 44);
-		comingSoonLabel.setHorizontalAlignment(0);
-		comingSoonLabel
-				.setText("<html><br /><br /><br /> Hello! <br /> This part was not finished! <br /> Please wait...</html>");
+		this.setLayout(null);
+		JLabel icon = new JLabel();
+		icon.setIcon(new ImageIcon(getClass().getResource(MineUSBConstants.FAVICON_PATH)));
+		icon.setBounds(200, 0, 100, 100);
+		this.add(icon);
 		
-		this.add(comingSoonLabel);
+		desc = new JLabel();
+		desc.setForeground(Color.white);
+		desc.setText("<html><br/><br/>" + MineUSB.getLangUsed().getDescIntegratedLauncher() + "</html>");
+		desc.setBounds(155, 80, 200, 40);
+		this.add(desc);
+		
+		play = new JButton("Play !");
+		play.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new LauncherFrame();
+			}
+		});
+		play.setBounds(185, 140, 100, 40);
+		this.add(play);
 		// Background
 		try {
 			this.bgImage = ImageIO.read(
@@ -92,5 +116,8 @@ public class LauncherPanel extends JPanel {
 						1610612736, true)));
 		graphics.fillRect(0, 0, width, gh);
 	}
-
+	
+	public static JLabel getDesriptionLabel() {
+		return desc;
+	}
 }

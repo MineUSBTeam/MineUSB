@@ -52,5 +52,13 @@ public interface Lang {
 	public String getSupportersText();
 	
 	public String getAddLauncherText();
+	
+	public String getDescIntegratedLauncher();
+	
+	public String getRegisteredProfileText();
+	
+	public String getSelectProfileText();
+	
+	public String getSelectedProfileText();
 
 }

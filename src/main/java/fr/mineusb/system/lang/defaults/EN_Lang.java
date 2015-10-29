@@ -105,4 +105,25 @@ public class EN_Lang implements Lang {
 		// TODO Auto-generated method stub
 		return "Add a Launcher";
 	}
+	
+	@Override
+	public String getDescIntegratedLauncher() {
+		return "The <font color=\"#00CC00\">MineUSB</font>'s integrated launcher";
+	}
+
+	@Override
+	public String getRegisteredProfileText() {
+		// TODO Auto-generated method stub
+		return "Registered profiles";
+	}
+	
+	@Override
+	public String getSelectProfileText() {
+		return "Select profile...";
+	}
+	
+	@Override
+	public String getSelectedProfileText() {
+		return "Selected profile: ";
+	}
 }
