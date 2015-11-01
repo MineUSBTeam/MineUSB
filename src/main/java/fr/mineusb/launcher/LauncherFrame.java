@@ -7,8 +7,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 
 import fr.mineusb.MineUSB;
-import fr.mineusb.launcher.auth.AuthRep;
-import fr.mineusb.launcher.auth.Authentication;
+import fr.mineusb.auth.Auth;
 
 import javax.swing.JButton;
 
@@ -31,6 +30,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import org.json.JSONException;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
@@ -109,16 +111,12 @@ public class LauncherFrame extends JFrame {
 		
 		btnConnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Authentication auth = new Authentication(Authentication.MOJANG_URL);
+				Auth a = new Auth(textField.getText(), new String(passwordField.getPassword()));
 				try {
-					AuthRep rep = auth.authenticate(textField.getText(), new String(passwordField.getPassword()), "");
-					File f = new File(data, "Xolider.dat");
-					f.createNewFile();
-					FileWriter fw = new FileWriter(f);
-					fw.append(textField.getText() + "\n");
-					fw.append(new String(passwordField.getPassword()) + "\n");
-					fw.close();
-					JOptionPane.showMessageDialog(btnConnect, "Profile enregistré !", "Profile enregistré", JOptionPane.INFORMATION_MESSAGE);
+					a.authenticate();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -147,7 +145,7 @@ public class LauncherFrame extends JFrame {
 					JOptionPane.showMessageDialog(btnPlay, "Veuillez séléctionner un profile", "Warning", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					Authentication auth = new Authentication(Authentication.MOJANG_URL);
+					//connection test
 					String line = "";
 					BufferedReader bf = null;
 					try {
@@ -171,27 +169,7 @@ public class LauncherFrame extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					AuthRep au = null;
-					try {
-						au = auth.authenticate(lines.get(0), lines.get(1), "");
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					try {
-						System.out.println("id: " + au.getSelectedProfile().getName());
-						Process p = launch(au.getAccessToken(), au.getSelectedProfile().getId(), textArea);
-						p.waitFor();
-						System.exit(0);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						e.getMessage();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						e.getMessage();
-					}
+					//connection
 				}
 			}
 		});

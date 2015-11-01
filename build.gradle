@@ -35,6 +35,7 @@ dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'fr.w67clement.core:ClemCore:1.0.1'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'org.json:json:20090211'
 }
 
 jar {
