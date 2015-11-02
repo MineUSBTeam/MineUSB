@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 
 import fr.mineusb.MineUSB;
 import fr.mineusb.auth.Auth;
+import fr.mineusb.auth.AuthResponse;
 
 import javax.swing.JButton;
 
@@ -112,8 +113,10 @@ public class LauncherFrame extends JFrame {
 		btnConnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Auth a = new Auth(textField.getText(), new String(passwordField.getPassword()));
+				AuthResponse rep;
 				try {
-					a.authenticate();
+					rep = a.authenticate();
+					registerProfile(textField.getText(), new String(passwordField.getPassword()), rep.getSelectedProfile().getName());
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -169,7 +172,23 @@ public class LauncherFrame extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					//connection
+					Auth a = new Auth(lines.get(0), lines.get(1));
+					try {
+						AuthResponse rep = a.authenticate();
+						ProcessLauncher pl = new ProcessLauncher(comboBox);
+						Process p = pl.launch(rep.getAccessToken(), rep.getSelectedProfile().getId(), textArea);
+						p.waitFor();
+						System.exit(0);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		});
@@ -209,82 +228,10 @@ public class LauncherFrame extends JFrame {
 		return r;
 	}
 	
-	private Process launch(String accessToken, String uuid, JTextArea area) throws IOException {
-		ProcessBuilder pb = new ProcessBuilder();
-		ArrayList<String> commands = new ArrayList<String>();
-		commands.add(getJAvaPath());
-		commands.add("-Djava.library.path=" + new File("game/natives/").getAbsolutePath());
-		commands.add("-cp");
-		commands.add(constructClasspath());
-		commands.add("net.minecraft.client.main.Main");
-		commands.addAll(getLauncherArgs(accessToken, uuid));
-		pb.directory(new File("game/"));
-		pb.command(commands);
-		Process p = pb.start();
-		Thread t = new Thread(new PrintProcessLog(p, area));
-		t.start();
-		return p;
-	}
-	
-	private String getJAvaPath() {
-		String returnString = null;
-		if(System.getProperty("os.name").toLowerCase().contains("win")) {
-			returnString = "\"" + System.getProperty("java.home") + "/bin/java" + "\"";
-		}
-		else {
-			returnString = System.getProperty("java.home") + "/bin/java";
-		}
-		return returnString;
-	}
-	
-	private String constructClasspath() {
-		String classpath = "";
-		ArrayList<File> libs = list(new File("game/libs/"));
-		String separator = System.getProperty("path.separator");
-		for(File lib: libs) {
-			classpath += lib.getAbsolutePath() + separator;
-		}
-		classpath += new File("game/minecraft.jar").getAbsolutePath();
-		return classpath;
-	}
-	
-	private ArrayList<File> list(File folder) {
-		ArrayList<File> files = new ArrayList<File>();
-		if(!folder.isDirectory()) {
-			return files;
-		}
-		File[] folderFiles = folder.listFiles();
-		if(folderFiles != null) {
-			for(File f: folderFiles) {
-				if(f.isDirectory()) {
-					files.addAll(list(f));
-				}
-				else {
-					files.add(f);
-				}
-			}
-		}
-		return files;
-	}
-	
-	private ArrayList<String> getLauncherArgs(String accessToken, String uuid) {
-		ArrayList<String> args = new ArrayList<String>();
-		args.add("--username=" + (String)comboBox.getSelectedItem());
-		args.add("--accessToken");
-		args.add(accessToken);
-		args.add("--version");
-		args.add("1.7.10");
-		args.add("--gameDir");
-		args.add(new File("game/").getAbsolutePath());
-		args.add("--assetsDir");
-		File assetsDir = new File("game/assets/");
-		args.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
-		args.add("--userProperties");
-		args.add("{}");
-		args.add("--uuid");
-		args.add(uuid);
-		args.add("--userType");
-		args.add("legacy");
-		return args;
+	private void registerProfile(String login, String mdp, String username) throws IOException {
+		FileWriter fw = new FileWriter(new File(data, username + ".dat"));
+		fw.append(login + "\n");
+		fw.append(mdp + "\n");
+		fw.close();
 	}
 }

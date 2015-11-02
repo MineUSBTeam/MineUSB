@@ -11,6 +11,8 @@ import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 public class Auth {
 	
 	private String username;
@@ -21,7 +23,8 @@ public class Auth {
 		this.password = password;
 	}
 	
-	public boolean authenticate() throws JSONException, IOException {
+	public AuthResponse authenticate() throws JSONException, IOException {
+		Gson g = new Gson();
 		String http = "";
 		try {
 		http = httpRequest(new URL("https://authserver.mojang.com/authenticate"), MakeJSONRequest(this.username, this.password));
@@ -30,7 +33,9 @@ public class Auth {
 			e.printStackTrace();
 		}
 		System.out.println(http);
-		return false;
+		AuthResponse rep = (AuthResponse)g.fromJson(http, AuthResponse.class);
+		System.out.println("username: " + rep.getSelectedProfile().getName());
+		return rep;
 	}
 	
 	private String MakeJSONRequest(String username, String password) throws JSONException {
@@ -54,7 +59,6 @@ public class Auth {
 		wr.writeBytes(content);
 		wr.flush();
 		wr.close();
-		int repCode = c.getResponseCode();
 		BufferedReader bf = new BufferedReader(new InputStreamReader(c.getInputStream()));
 		String line = "";
 		line = bf.readLine();
