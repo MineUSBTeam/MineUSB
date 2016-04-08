@@ -1,19 +1,19 @@
 package fr.mineusb.system;
 
+import fr.mineusb.MineUSB;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import org.apache.logging.log4j.Logger;
 
-import fr.mineusb.MineUSB;
-import fr.w67clement.core.logger.MineLogger;
-
+@Deprecated
 public class MineUSBConfig {
 
 	private static File file;
 	public static final Properties properties = new Properties();
-	private static MineLogger console;
+	private static Logger console;
 
 	public MineUSBConfig(File configFile) {
 		file = configFile;
@@ -142,7 +142,7 @@ public class MineUSBConfig {
 					properties.store(out, "MineUSB properties");
 					out.close();
 				} catch (IOException e) {
-					console.println("Failed.");
+					console.error("Failed.");
 					console.error("Unable to write config file.");
 				}
 			}

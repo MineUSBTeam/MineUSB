@@ -2,129 +2,136 @@ package fr.mineusb.system.lang.defaults;
 
 import fr.mineusb.system.lang.Lang;
 
-public class FR_Lang implements Lang {
+public class FR_Lang implements Lang
+{
 
-	public String getName() {
+	public String getName()
+	{
 		return "Français";
 	}
 
-	public String getId() {
+	public String getId()
+	{
 		return "FRENCH";
 	}
 
-	public String getDescriptionLabel() {
-		return "Jouez à Minecraft sur votre clef USB!";
-	}
-	
-	@Override
-	public String getSelectedLauncherLabel() {
-	return "Launcher sélectionné: ";
+	public String getDescriptionLabel()
+	{
+		return "Jouez à Minecraft sur votre clé USB!";
 	}
 
-	public String getPlayButton() {
+	@Override
+	public String getSelectedLauncherLabel()
+	{
+		return "Launcher sélectionné: ";
+	}
+
+	public String getPlayButton()
+	{
 		return "Jouer";
 	}
 
-	public String getOptionsButton() {
+	public String getOptionsButton()
+	{
 		return "Options";
 	}
 
-	public String getQuitButton() {
+	public String getQuitButton()
+	{
 		return "Quitter";
 	}
 
-	public String getAuthorsLabel() {
+	public String getAuthorsLabel()
+	{
 		return "Auteur: <author> <br />Contributeur: <contributors>";
 	}
 
-	public String getWebsitesOnline() {
+	public String getWebsitesOnline()
+	{
 		return "Sites en lignes:";
 	}
 
-	public String getViewLicenseButton() {
+	public String getViewLicenseButton()
+	{
 		return "Voir la licence";
 	}
 
-	public String getChangeLangLabel() {
+	public String getChangeLangLabel()
+	{
 		return "Changer de langue:";
 	}
 
-	public String getReloadButton() {
+	public String getReloadButton()
+	{
 		return "Recharger la config";
 	}
 
-	public String getSkinsServerLabel() {
+	public String getSkinsServerLabel()
+	{
 		return "Serveur de skins";
 	}
 
-	public String getMultiplayerSessionLabel() {
+	public String getMultiplayerSessionLabel()
+	{
 		return "Session multijoueur";
 	}
 
-	public String getLoadingText() {
+	public String getLoadingText()
+	{
 		return "Chargement...";
 	}
 
 	@Override
-	public String getSpecialThanksToText() {
+	public String getSpecialThanksToText()
+	{
 		return "Remerciement spécial à: ";
 	}
 
 	@Override
-	public String getCreditsText() {
+	public String getCreditsText()
+	{
 		return "Crédits";
 	}
 
 	@Override
-	public String getW67clementDescription() {
+	public String getW67clementDescription()
+	{
 		return "Auteur de MineUSB";
 	}
 
 	@Override
-	public String getXoliderDescription() {
+	public String getXoliderDescription()
+	{
 		return "Un développeur de MineUSB.";
 	}
 
 	@Override
-	public String getMentor6561Description() {
+	public String getMentor6561Description()
+	{
 		return "Auteur du logo et de l'icône de MineUSB";
 	}
 
 	@Override
-	public String getTheShark34Description() {
+	public String getTheShark34Description()
+	{
 		return "Il m'a aidé pour <font color=\"#00CC00\">Gradle</font>";
 	}
 
 	@Override
-	public String getSupportersText() {
+	public String getSupportersText()
+	{
 		return "Et tous les supporteurs de MineUSB";
 	}
 
 	@Override
-	public String getAddLauncherText() {
-		// TODO Auto-generated method stub
-		return "Ajouter un launcher";
-	}
-	
-	@Override
-	public String getDescIntegratedLauncher() {
-		return "Le launcher intégré de <font color=\"#00CC00\">MineUSB</font>";
+	public String getTechnologiesText()
+	{
+		return "Technologies utilisés";
 	}
 
 	@Override
-	public String getRegisteredProfileText() {
-		// TODO Auto-generated method stub
-		return "Profiles enregistrés";
-	}
-
-	@Override
-	public String getSelectProfileText() {
-		// TODO Auto-generated method stub
-		return "Sélectionner un profile...";
-	}
-	
-	@Override
-	public String getSelectedProfileText() {
-		return "Profile séléctionné: ";
+	public String getMineUSBLauncherTitleText()
+	{
+		return "Launcher intégré de <b>MineUSB</b> ";
 	}
 }

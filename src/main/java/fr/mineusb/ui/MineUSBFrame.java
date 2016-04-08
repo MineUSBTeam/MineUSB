@@ -1,13 +1,11 @@
 package fr.mineusb.ui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-
 import fr.mineusb.MineUSB;
 import fr.mineusb.MineUSBConstants;
-import fr.w67clement.core.logger.MineLogger;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+import org.apache.logging.log4j.Logger;
 
 public class MineUSBFrame extends JFrame {
 
@@ -17,7 +15,7 @@ public class MineUSBFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	// Console
-	private static MineLogger console;
+	private static Logger console;
 	// Instance
 	private static MineUSBFrame frame;
 

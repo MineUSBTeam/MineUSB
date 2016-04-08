@@ -1,6 +1,7 @@
 package fr.mineusb.system.lang;
 
-public interface Lang {
+public interface Lang
+{
 
 	/**
 	 * Gets the name of the lang.
@@ -12,7 +13,7 @@ public interface Lang {
 	public String getId();
 
 	public String getDescriptionLabel();
-	
+
 	public String getSelectedLauncherLabel();
 
 	public String getPlayButton();
@@ -50,15 +51,10 @@ public interface Lang {
 	public String getTheShark34Description();
 
 	public String getSupportersText();
-	
-	public String getAddLauncherText();
-	
-	public String getDescIntegratedLauncher();
-	
-	public String getRegisteredProfileText();
-	
-	public String getSelectProfileText();
-	
-	public String getSelectedProfileText();
 
+	public String getTechnologiesText();
+
+	// MineUSB Integrated launcher section
+
+	public String getMineUSBLauncherTitleText();
 }

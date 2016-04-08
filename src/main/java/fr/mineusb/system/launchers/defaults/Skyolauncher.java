@@ -1,8 +1,10 @@
 package fr.mineusb.system.launchers.defaults;
 
+import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -42,28 +44,35 @@ public class Skyolauncher extends Launcher {
 	public ImageIcon getImageIcon() {
 		try {
 			if (Utils
-					.isOnline("http://www.skyost.eu/skyolauncher/res/skyolauncher.png")) {
+					.isOnline("https://www.skyost.eu/skyolauncher/res/skyolauncher.png")) {
 				// return new ImageIcon(
 				// Toolkit.getDefaultToolkit()
 				// .getImage(
 				// new URL(
 				// "http://www.skyost.eu/skyolauncher/res/skyolauncher.png")));
 				try {
-					return new ImageIcon(
-							ImageIO.read(
-									new URL(
-											"http://www.skyost.eu/skyolauncher/res/skyolauncher.png")
-											.openStream()).getScaledInstance(
-									300, 75, 16));
+					InputStream imgStream = new URL(
+							"https://www.skyost.eu/skyolauncher/res/skyolauncher.png")
+							.openStream();
+					if (imgStream != null) {
+						return new ImageIcon(ImageIO.read(imgStream)
+								.getScaledInstance(300, 75, 16));
+					} else
+						return super.getImageIcon();
 				} catch (IOException e) {
 					MineUSB.getConsole()
-							.warning(
+							.warn(
+									"MineUSB can't load Skyolauncher logo, you running in offline mode?");
+					return super.getImageIcon();
+				} catch (NullPointerException e) {
+					MineUSB.getConsole()
+							.warn(
 									"MineUSB can't load Skyolauncher logo, you running in offline mode?");
 					return super.getImageIcon();
 				}
 			} else {
 				MineUSB.getConsole()
-						.warning(
+						.warn(
 								"MineUSB can't load Skyolauncher logo, you running in offline mode?");
 				return super.getImageIcon();
 			}
@@ -83,6 +92,7 @@ public class Skyolauncher extends Launcher {
 								.getResource(MineUSBConstants.FAVICON_PATH)));
 		dialog.setVisible(true);
 		dialog.getProgressBar().setIndeterminate(true);
+		dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
 		if (!this.getFile().exists()) {
 			dialog.setTitle("Downloading launcher...");
@@ -123,26 +133,29 @@ public class Skyolauncher extends Launcher {
 				} catch (IOException e) {
 					runSuccess = false;
 				}
-			} else if (OS.getCurrentPlatform() == OS.LINUX || OS.getCurrentPlatform() == OS.SOLARIS) {
+			} else if (OS.getCurrentPlatform() == OS.LINUX
+					|| OS.getCurrentPlatform() == OS.SOLARIS) {
 				dialog.setText("Using ClassLoader... Loading Minecraft Bootstrap, please wait...");
 				MineUSB.getConsole().info(
 						"Loading Minecraft Bootstrap with ClassLoader...");
 				try {
-					System.setProperty("user.home", MineUSB.getDataFolder().getAbsolutePath());
-					Class<?> skyolauncherClass = new URLClassLoader(new URL[] { this
-							.getFile().toURI().toURL() })
+					System.setProperty("user.home", MineUSB.getDataFolder()
+							.getAbsolutePath());
+					Class<?> skyolauncherClass = new URLClassLoader(
+							new URL[] { this.getFile().toURI().toURL() })
 							.loadClass("fr.skyost.launcher.Skyolauncher");
 					Constructor<?> constructor = skyolauncherClass
-							.getConstructor(new Class<?>[] { });
+							.getConstructor(new Class<?>[] {});
 					Method mainMethod = skyolauncherClass.getMethod("main",
 							new Class<?>[] { String[].class });
 					dialog.dispose();
 					MineUSB.shutdown();
-					mainMethod.invoke(constructor.newInstance(new Object[] {}),new Object[] { new String[] { "-console" }});
+					mainMethod.invoke(constructor.newInstance(new Object[] {}),
+							new Object[] { new String[] { "-console" } });
 				} catch (Throwable e) {
 					e.printStackTrace();
 					runSuccess = false;
-				} 
+				}
 			}
 		}
 

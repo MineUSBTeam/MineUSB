@@ -82,17 +82,17 @@ public class EN_Lang implements Lang {
 
 	@Override
 	public String getXoliderDescription() {
-		return "An developper of MineUSB.";
+		return "A developer of MineUSB.";
 	}
 
 	@Override
 	public String getMentor6561Description() {
-		return "Author of MineUSB's logo and icon";
+		return "Creator of MineUSB's logo and icon";
 	}
 
 	@Override
 	public String getTheShark34Description() {
-		return "He help me for <font color=\"#00CC00\">Gradle</font>";
+		return "He helped me for <font color=\"#00CC00\">Gradle</font>";
 	}
 
 	@Override
@@ -101,29 +101,14 @@ public class EN_Lang implements Lang {
 	}
 
 	@Override
-	public String getAddLauncherText() {
-		// TODO Auto-generated method stub
-		return "Add a Launcher";
-	}
-	
-	@Override
-	public String getDescIntegratedLauncher() {
-		return "The <font color=\"#00CC00\">MineUSB</font>'s integrated launcher";
+	public String getTechnologiesText()
+	{
+		return "Using technologies";
 	}
 
 	@Override
-	public String getRegisteredProfileText() {
-		// TODO Auto-generated method stub
-		return "Registered profiles";
-	}
-	
-	@Override
-	public String getSelectProfileText() {
-		return "Select profile...";
-	}
-	
-	@Override
-	public String getSelectedProfileText() {
-		return "Selected profile: ";
+	public String getMineUSBLauncherTitleText()
+	{
+		return "<b>MineUSB</b> integrated launcher ";
 	}
 }

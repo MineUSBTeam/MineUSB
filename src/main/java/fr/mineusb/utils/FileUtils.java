@@ -1,14 +1,13 @@
 package fr.mineusb.utils;
 
+import fr.mineusb.MineUSB;
 import java.io.File;
 import java.io.PrintWriter;
-
-import fr.mineusb.MineUSB;
-import fr.w67clement.core.logger.MineLogger;
+import org.apache.logging.log4j.Logger;
 
 public class FileUtils {
 	
-	private static MineLogger console = MineUSB.getConsole();
+	private static Logger console = MineUSB.getConsole();
 	
 	public static void generateRunLauncherScriptWindows(File file, String title, File runFile) {
 		PrintWriter output = null;

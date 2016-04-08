@@ -1,8 +1,10 @@
 package fr.mineusb.system.launchers.defaults;
 
+import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,21 +54,28 @@ public class NationsGloryLauncher extends Launcher {
 				// new URL(
 				// "http://www.skyost.eu/skyolauncher/res/skyolauncher.png")));
 				try {
-					return new ImageIcon(
-							ImageIO.read(
-									new URL(
-											"https://www.nationsglory.fr/theme/site/img/logo.png")
-											.openStream()).getScaledInstance(
-									300, 75, 16));
+					InputStream imgStream = new URL(
+							"https://www.nationsglory.fr/theme/site/img/logo.png")
+							.openStream();
+					if (imgStream != null) {
+						return new ImageIcon(ImageIO.read(imgStream)
+								.getScaledInstance(300, 75, 16));
+					} else
+						return super.getImageIcon();
 				} catch (IOException e) {
 					MineUSB.getConsole()
-							.warning(
+							.warn(
+									"MineUSB can't load NationsGlory logo, you running in offline mode?");
+					return super.getImageIcon();
+				} catch (NullPointerException e) {
+					MineUSB.getConsole()
+							.warn(
 									"MineUSB can't load NationsGlory logo, you running in offline mode?");
 					return super.getImageIcon();
 				}
 			} else {
 				MineUSB.getConsole()
-						.warning(
+						.warn(
 								"MineUSB can't load NationsGlory logo, you running in offline mode?");
 				return super.getImageIcon();
 			}
@@ -85,6 +94,7 @@ public class NationsGloryLauncher extends Launcher {
 								.getResource(MineUSBConstants.FAVICON_PATH)));
 		dialog.setVisible(true);
 		dialog.getProgressBar().setIndeterminate(true);
+		dialog.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 
 		if (!this.getFile().exists()) {
 			dialog.setTitle("Downloading launcher...");
