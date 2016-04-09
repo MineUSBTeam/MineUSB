@@ -135,7 +135,7 @@ public class MineUSBPanel extends JPanel
             playButton.setText(MineUSB.getLangUsed().getPlayButton());
             playButton.setBorderPainted(false);
             playButton.setOpaque(false);
-            playButton.setPreferredSize(new Dimension(75, 25));
+            //playButton.setPreferredSize(new Dimension(75, 25));
             playButton.addActionListener(e -> new Thread(() -> {
                 try
                 {

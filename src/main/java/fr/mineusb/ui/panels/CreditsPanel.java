@@ -165,7 +165,7 @@ public class CreditsPanel extends TexturedPanel
 			technologiesValues = new JLabel();
 			technologiesValues.setText(
 					"<html><b><font color=\"#00CC00\">ClemCore (1.0.4)</font></b>,"
-							+ " <b><font color=\"#00CC00\">Gson (2.4)</font></b></html>");
+							+ " <b><font color=\"#00CC00\">Gson (2.4)</font></b>, <b><font color=\"#00CC00\">Log4j (2.5)</font></b></html>");
 			technologiesValues.setForeground(Color.WHITE);
 			technologiesValues.setBounds(90, 197, 450, 20);
 		}

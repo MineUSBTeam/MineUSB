@@ -10,14 +10,17 @@ import fr.mineusb.system.launchers.LauncherManager;
 import fr.mineusb.ui.LicenseFrame;
 import fr.mineusb.ui.MineUSBFrame;
 import fr.mineusb.ui.OptionsFrame;
-import fr.mineusb.ui.components.MineButton;
-import fr.mineusb.ui.panels.*;
+import fr.mineusb.ui.panels.CreditsPanel;
+import fr.mineusb.ui.panels.LaunchersPanel;
+import fr.mineusb.ui.panels.MineUSBPanel;
+import fr.mineusb.ui.panels.OptionsPanel;
+import fr.mineusb.ui.panels.launcher.ConnectPanel;
+import fr.mineusb.ui.panels.launcher.MainLauncherPanel;
 import fr.mineusb.utils.LoggerOutputStream;
 import fr.w67clement.core.system.MineSystem;
 import fr.w67clement.core.system.OS;
 import fr.w67clement.core.utils.Utils;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -152,22 +155,7 @@ public class MineUSB
         }
 
         // Initialize frame
-        try
-        {
-            MineButton.loadImages();
-        }
-        catch (IOException e)
-        {
-            console.error(e);
-        }
-        new Thread()
-        {
-            @Override
-            public void run()
-            {
-                licenseFrame = new LicenseFrame();
-            }
-        }.start();
+        new Thread(() -> licenseFrame = new LicenseFrame()).start();
         frame = new MineUSBFrame();
         optionsFrame = new OptionsFrame();
 
@@ -295,7 +283,8 @@ public class MineUSB
         // Websites online label
         OptionsPanel.getWebsitesOnlineLabel().setText("<html><b>" + lang.getWebsitesOnline() + "</b></html>");
         // Integrated launcher
-        LauncherPanel.getTitle().setText("<html>" + lang.getMineUSBLauncherTitleText() + "(v " + LAUNCHER_VERSION + ")<html>");
+        MainLauncherPanel.getTitle().setText("<html>" + lang.getMineUSBLauncherTitleText() + "(v " + LAUNCHER_VERSION + ")<html>");
+        ConnectPanel.getLoginButton().setText(lang.getConnectButton());
         // Credits
         CreditsPanel.getCreditsLabel().setText("<html><b>" + lang.getCreditsText() + "</b></html>");
         CreditsPanel.getW67clementLabel().setText("<html>- <b><font color=\"#00CC00\">w67clement</font></b>: " + lang.getW67clementDescription() + ".<html>");

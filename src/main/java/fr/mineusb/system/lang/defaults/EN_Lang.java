@@ -111,4 +111,16 @@ public class EN_Lang implements Lang {
 	{
 		return "<b>MineUSB</b> integrated launcher ";
 	}
+
+	@Override
+	public String getConnectButton()
+	{
+		return "Log In";
+	}
+
+	@Override
+	public String getUsernameAndPasswordInvalid()
+	{
+		return "The username and the password are invalid.";
+	}
 }

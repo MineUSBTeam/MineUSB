@@ -8,53 +8,59 @@ public interface Lang
 	 * 
 	 * @return The name of the lang.
 	 */
-	public String getName();
+	String getName();
 
-	public String getId();
+	String getId();
 
-	public String getDescriptionLabel();
+	String getDescriptionLabel();
 
-	public String getSelectedLauncherLabel();
+	String getSelectedLauncherLabel();
 
-	public String getPlayButton();
+	String getPlayButton();
 
-	public String getOptionsButton();
+	String getOptionsButton();
 
-	public String getQuitButton();
+	String getQuitButton();
 
-	public String getAuthorsLabel();
+	String getAuthorsLabel();
 
-	public String getWebsitesOnline();
+	String getWebsitesOnline();
 
-	public String getViewLicenseButton();
+	String getViewLicenseButton();
 
-	public String getChangeLangLabel();
+	String getChangeLangLabel();
 
-	public String getReloadButton();
+	String getReloadButton();
 
-	public String getSkinsServerLabel();
+	String getSkinsServerLabel();
 
-	public String getMultiplayerSessionLabel();
+	String getMultiplayerSessionLabel();
 
-	public String getLoadingText();
+	String getLoadingText();
 
-	public String getSpecialThanksToText();
+	String getSpecialThanksToText();
 
-	public String getCreditsText();
+	String getCreditsText();
 
-	public String getW67clementDescription();
+	String getW67clementDescription();
 
-	public String getXoliderDescription();
+	String getXoliderDescription();
 
-	public String getMentor6561Description();
+	String getMentor6561Description();
 
-	public String getTheShark34Description();
+	String getTheShark34Description();
 
-	public String getSupportersText();
+	String getSupportersText();
 
-	public String getTechnologiesText();
+	String getTechnologiesText();
 
 	// MineUSB Integrated launcher section
 
-	public String getMineUSBLauncherTitleText();
+	String getMineUSBLauncherTitleText();
+
+    String getConnectButton();
+
+    // MineUSB Integrated launcher errors section
+
+    String getUsernameAndPasswordInvalid();
 }

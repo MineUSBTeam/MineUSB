@@ -1,5 +1,7 @@
 package fr.mineusb.system;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import fr.mineusb.MineUSB;
@@ -7,7 +9,7 @@ import java.io.*;
 
 public class JsonConfig
 {
-
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	private File file;
 	private JsonObject json;
 
@@ -41,7 +43,7 @@ public class JsonConfig
 			FileWriter configWriter = new FileWriter(file);
 			json.remove("used_launcher");
             json.addProperty("used_launcher", launcher);
-            configWriter.append(json.toString());
+            configWriter.append(gson.toJson(json));
 			configWriter.close();
 
 			reloadConfiguration();
@@ -62,7 +64,7 @@ public class JsonConfig
 			FileWriter configWriter = new FileWriter(file);
             json.remove("lang");
             json.addProperty("lang", lang);
-			configWriter.append(json.toString());
+			configWriter.append(gson.toJson(json));
 			configWriter.close();
 
 			reloadConfiguration();
@@ -75,6 +77,27 @@ public class JsonConfig
 
 		}
 	}
+
+	public void setUserAndPWD(String username, String pwd) {
+        try
+        {
+            FileWriter configWriter = new FileWriter(file);
+            json.remove("auth");
+            JsonObject auth = new JsonObject();
+            auth.addProperty("username", username);
+            auth.addProperty("password", pwd);
+            json.add("auth", auth);
+            configWriter.append(gson.toJson(json));
+            configWriter.close();
+
+            reloadConfiguration();
+        }
+        catch (IOException e)
+        {
+            MineUSB.getConsole().error(e);
+            System.exit(1);
+        }
+    }
 
 	@SuppressWarnings("deprecation")
 	public void reloadConfiguration()
@@ -103,7 +126,7 @@ public class JsonConfig
                     auth.addProperty("username", "404@null.com");
                     auth.addProperty("password", "non-encoded-response");
                     json.add("auth", auth);
-                    configWriter.append(json.toString());
+                    configWriter.append(gson.toJson(json));
                     configWriter.close();
 				}
 				catch (IOException e)

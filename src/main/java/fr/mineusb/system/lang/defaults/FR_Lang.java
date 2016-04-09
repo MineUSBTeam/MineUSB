@@ -134,4 +134,16 @@ public class FR_Lang implements Lang
 	{
 		return "Launcher intégré de <b>MineUSB</b> ";
 	}
+
+	@Override
+	public String getConnectButton()
+	{
+		return "Connexion";
+	}
+
+	@Override
+	public String getUsernameAndPasswordInvalid()
+	{
+		return "Le nom d'utilisateur et le mot de passe sont invalides.";
+	}
 }

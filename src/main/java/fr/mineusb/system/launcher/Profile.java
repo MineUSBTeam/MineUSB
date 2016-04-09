@@ -7,7 +7,6 @@ package fr.mineusb.system.launcher;
  */
 public class Profile
 {
-
     private String version;
 
     public String getVersion()
@@ -19,5 +18,4 @@ public class Profile
     {
         this.version = version;
     }
-
 }
